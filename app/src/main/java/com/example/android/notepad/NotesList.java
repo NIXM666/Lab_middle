@@ -37,13 +37,24 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.StringTokenizer;
 
 /**
  * Displays a list of notes. Will display notes from the {@link Uri}
  * provided in the incoming Intent if there is one, otherwise it defaults to displaying the
  * contents of the {@link NotePadProvider}.
- *
+ * <p/>
  * NOTE: Notice that the provider operations in this Activity are taking place on the UI thread.
  * This is not a good practice. It is only done here to make the code more readable. A real
  * application should use the {@link android.content.AsyncQueryHandler} or
@@ -57,12 +68,15 @@ public class NotesList extends ListActivity {
     /**
      * The columns needed by the cursor adapter
      */
-    private static final String[] PROJECTION = new String[] {
+    private static final String[] PROJECTION = new String[]{
             NotePad.Notes._ID, // 0
             NotePad.Notes.COLUMN_NAME_TITLE, // 1
+            NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE //2
     };
 
-    /** The index of the title column */
+    /**
+     * The index of the title column
+     */
     private static final int COLUMN_INDEX_TITLE = 1;
 
     /**
@@ -101,11 +115,11 @@ public class NotesList extends ListActivity {
          * Please see the introductory note about performing provider operations on the UI thread.
          */
         Cursor cursor = managedQuery(
-            getIntent().getData(),            // Use the default content URI for the provider.
-            PROJECTION,                       // Return the note ID and title for each note.
-            null,                             // No where clause, return all records.
-            null,                             // No where clause, therefore no where column values.
-            NotePad.Notes.DEFAULT_SORT_ORDER  // Use the default sort order.
+                getIntent().getData(),            // Use the default content URI for the provider.
+                PROJECTION,                       // Return the note ID、title and createdate for each note.
+                null,                             // No where clause, return all records.
+                null,                             // No where clause, therefore no where column values.
+                NotePad.Notes.DEFAULT_SORT_ORDER  // Use the default sort order.
         );
 
         /*
@@ -117,36 +131,59 @@ public class NotesList extends ListActivity {
          */
 
         // The names of the cursor columns to display in the view, initialized to the title column
-        String[] dataColumns = { NotePad.Notes.COLUMN_NAME_TITLE } ;
+        String[] dataColumns = {NotePad.Notes.COLUMN_NAME_TITLE, NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE};
 
         // The view IDs that will display the cursor columns, initialized to the TextView in
         // noteslist_item.xml
-        int[] viewIDs = { android.R.id.text1 };
+        int[] viewIDs = {android.R.id.text1, R.id.time1};
 
         // Creates the backing adapter for the ListView.
+        //使用自定义的适配器，实现时间戳转换成日期格式
         SimpleCursorAdapter adapter
-            = new SimpleCursorAdapter(
-                      this,                             // The Context for the ListView
-                      R.layout.noteslist_item,          // Points to the XML for a list item
-                      cursor,                           // The cursor to get items from
-                      dataColumns,
-                      viewIDs
-              );
-
+                = new MyAdapter(
+                this,                             // The Context for the ListView
+                R.layout.noteslist_item,          // Points to the XML for a list item
+                cursor,                           // The cursor to get items from
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
         // Sets the ListView's adapter to be the cursor adapter that was just created.
+
+    }
+
+    public void Search(String query){
+        Cursor cursor = managedQuery(
+                getIntent().getData(),            // Use the default content URI for the provider.
+                PROJECTION,                       // Return the note ID、title and createdate for each note.
+                "`" + NotePad.Notes.COLUMN_NAME_TITLE + "` like '%" + query + "%'", // 查询语句实现搜索
+                null,                             // No where clause, therefore no where column values.
+                NotePad.Notes.DEFAULT_SORT_ORDER  // Use the default sort order.
+        );
+        String[] dataColumns = {NotePad.Notes.COLUMN_NAME_TITLE, NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE};
+        int[] viewIDs = {android.R.id.text1, R.id.time1};
+        SimpleCursorAdapter adapter
+                = new MyAdapter(
+                this,                             // The Context for the ListView
+                R.layout.noteslist_item,          // Points to the XML for a list item
+                cursor,                           // The cursor to get items from
+                dataColumns,
+                viewIDs
+        );
         setListAdapter(adapter);
     }
 
     /**
      * Called when the user clicks the device's Menu button the first time for
      * this Activity. Android passes in a Menu object that is populated with items.
-     *
+     * <p/>
      * Sets up a menu that provides the Insert option plus a list of alternative actions for
      * this Activity. Other applications that want to handle notes can "register" themselves in
      * Android by providing an intent filter that includes the category ALTERNATIVE and the
      * mimeTYpe NotePad.Notes.CONTENT_TYPE. If they do this, the code in onCreateOptionsMenu()
      * will add the Activity that contains the intent filter to its list of options. In effect,
      * the menu will offer the user other applications that can handle notes.
+     *
      * @param menu A Menu object, to which menu items should be added.
      * @return True, always. The menu should be displayed.
      */
@@ -164,6 +201,20 @@ public class NotesList extends ListActivity {
         intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
         menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
                 new ComponentName(this, NotesList.class), null, intent, 0, null);
+        final SearchView search = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Search(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Search(newText);
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -223,26 +274,26 @@ public class NotesList extends ListActivity {
              * Add alternatives to the menu
              */
             menu.addIntentOptions(
-                Menu.CATEGORY_ALTERNATIVE,  // Add the Intents as options in the alternatives group.
-                Menu.NONE,                  // A unique item ID is not required.
-                Menu.NONE,                  // The alternatives don't need to be in order.
-                null,                       // The caller's name is not excluded from the group.
-                specifics,                  // These specific options must appear first.
-                intent,                     // These Intent objects map to the options in specifics.
-                Menu.NONE,                  // No flags are required.
-                items                       // The menu items generated from the specifics-to-
-                                            // Intents mapping
+                    Menu.CATEGORY_ALTERNATIVE,  // Add the Intents as options in the alternatives group.
+                    Menu.NONE,                  // A unique item ID is not required.
+                    Menu.NONE,                  // The alternatives don't need to be in order.
+                    null,                       // The caller's name is not excluded from the group.
+                    specifics,                  // These specific options must appear first.
+                    intent,                     // These Intent objects map to the options in specifics.
+                    Menu.NONE,                  // No flags are required.
+                    items                       // The menu items generated from the specifics-to-
+                    // Intents mapping
             );
-                // If the Edit menu item exists, adds shortcuts for it.
-                if (items[0] != null) {
+            // If the Edit menu item exists, adds shortcuts for it.
+            if (items[0] != null) {
 
-                    // Sets the Edit menu item shortcut to numeric "1", letter "e"
-                    items[0].setShortcut('1', 'e');
-                }
-            } else {
-                // If the list is empty, removes any existing alternative actions from the menu
-                menu.removeGroup(Menu.CATEGORY_ALTERNATIVE);
+                // Sets the Edit menu item shortcut to numeric "1", letter "e"
+                items[0].setShortcut('1', 'e');
             }
+        } else {
+            // If the list is empty, removes any existing alternative actions from the menu
+            menu.removeGroup(Menu.CATEGORY_ALTERNATIVE);
+        }
 
         // Displays the menu
         return true;
@@ -253,9 +304,10 @@ public class NotesList extends ListActivity {
      * in the list is selected. If the option was INSERT, then a new Intent is sent out with action
      * ACTION_INSERT. The data from the incoming Intent is put into the new Intent. In effect,
      * this triggers the NoteEditor activity in the NotePad application.
-     *
+     * <p/>
      * If the item was not INSERT, then most likely it was an alternative option from another
      * application. The parent method is called to process the item.
+     *
      * @param item The menu item that was selected by the user
      * @return True, if the INSERT menu item was selected; otherwise, the result of calling
      * the parent method.
@@ -263,37 +315,39 @@ public class NotesList extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.menu_add:
+            case R.id.menu_add:
           /*
            * Launches a new Activity using an Intent. The intent filter for the Activity
            * has to have action ACTION_INSERT. No category is set, so DEFAULT is assumed.
            * In effect, this starts the NoteEditor Activity in NotePad.
            */
-           startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
-           return true;
-        case R.id.menu_paste:
+                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
+                return true;
+
+            case R.id.menu_paste:
           /*
            * Launches a new Activity using an Intent. The intent filter for the Activity
            * has to have action ACTION_PASTE. No category is set, so DEFAULT is assumed.
            * In effect, this starts the NoteEditor Activity in NotePad.
            */
-          startActivity(new Intent(Intent.ACTION_PASTE, getIntent().getData()));
-          return true;
-        default:
-            return super.onOptionsItemSelected(item);
+                startActivity(new Intent(Intent.ACTION_PASTE, getIntent().getData()));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
     /**
      * This method is called when the user context-clicks a note in the list. NotesList registers
      * itself as the handler for context menus in its ListView (this is done in onCreate()).
-     *
+     * <p/>
      * The only available options are COPY and DELETE.
-     *
+     * <p/>
      * Context-click is equivalent to long-press.
      *
-     * @param menu A ContexMenu object to which items should be added.
-     * @param view The View for which the context menu is being constructed.
+     * @param menu     A ContexMenu object to which items should be added.
+     * @param view     The View for which the context menu is being constructed.
      * @param menuInfo Data associated with view.
      * @throws ClassCastException
      */
@@ -340,8 +394,8 @@ public class NotesList extends ListActivity {
         // as well.  This does a query on the system for any activities that
         // implement the ALTERNATIVE_ACTION for our data, adding a menu item
         // for each one that is found.
-        Intent intent = new Intent(null, Uri.withAppendedPath(getIntent().getData(), 
-                                        Integer.toString((int) info.id) ));
+        Intent intent = new Intent(null, Uri.withAppendedPath(getIntent().getData(),
+                Integer.toString((int) info.id)));
         intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
         menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
                 new ComponentName(this, NotesList.class), null, intent, 0, null);
@@ -392,55 +446,56 @@ public class NotesList extends ListActivity {
          * Gets the menu item's ID and compares it to known actions.
          */
         switch (item.getItemId()) {
-        case R.id.context_open:
-            // Launch activity to view/edit the currently selected item
-            startActivity(new Intent(Intent.ACTION_EDIT, noteUri));
-            return true;
+            case R.id.context_open:
+                // Launch activity to view/edit the currently selected item
+                startActivity(new Intent(Intent.ACTION_EDIT, noteUri));
+                return true;
 //BEGIN_INCLUDE(copy)
-        case R.id.context_copy:
-            // Gets a handle to the clipboard service.
-            ClipboardManager clipboard = (ClipboardManager)
-                    getSystemService(Context.CLIPBOARD_SERVICE);
-  
-            // Copies the notes URI to the clipboard. In effect, this copies the note itself
-            clipboard.setPrimaryClip(ClipData.newUri(   // new clipboard item holding a URI
-                    getContentResolver(),               // resolver to retrieve URI info
-                    "Note",                             // label for the clip
-                    noteUri)                            // the URI
-            );
-  
-            // Returns to the caller and skips further processing.
-            return true;
+            case R.id.context_copy:
+                // Gets a handle to the clipboard service.
+                ClipboardManager clipboard = (ClipboardManager)
+                        getSystemService(Context.CLIPBOARD_SERVICE);
+
+                // Copies the notes URI to the clipboard. In effect, this copies the note itself
+                clipboard.setPrimaryClip(ClipData.newUri(   // new clipboard item holding a URI
+                        getContentResolver(),               // resolver to retrieve URI info
+                        "Note",                             // label for the clip
+                        noteUri)                            // the URI
+                );
+
+                // Returns to the caller and skips further processing.
+                return true;
 //END_INCLUDE(copy)
-        case R.id.context_delete:
-  
-            // Deletes the note from the provider by passing in a URI in note ID format.
-            // Please see the introductory note about performing provider operations on the
-            // UI thread.
-            getContentResolver().delete(
-                noteUri,  // The URI of the provider
-                null,     // No where clause is needed, since only a single note ID is being
-                          // passed in.
-                null      // No where clause is used, so no where arguments are needed.
-            );
-  
-            // Returns to the caller and skips further processing.
-            return true;
-        default:
-            return super.onContextItemSelected(item);
+            case R.id.context_delete:
+
+                // Deletes the note from the provider by passing in a URI in note ID format.
+                // Please see the introductory note about performing provider operations on the
+                // UI thread.
+                getContentResolver().delete(
+                        noteUri,  // The URI of the provider
+                        null,     // No where clause is needed, since only a single note ID is being
+                        // passed in.
+                        null      // No where clause is used, so no where arguments are needed.
+                );
+
+                // Returns to the caller and skips further processing.
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
     }
 
     /**
      * This method is called when the user clicks a note in the displayed list.
-     *
+     * <p/>
      * This method handles incoming actions of either PICK (get data from the provider) or
      * GET_CONTENT (get or create data). If the incoming action is EDIT, this method sends a
      * new Intent to start NoteEditor.
-     * @param l The ListView that contains the clicked item
-     * @param v The View of the individual item
+     *
+     * @param l        The ListView that contains the clicked item
+     * @param v        The View of the individual item
      * @param position The position of v in the displayed list
-     * @param id The row ID of the clicked item
+     * @param id       The row ID of the clicked item
      */
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {

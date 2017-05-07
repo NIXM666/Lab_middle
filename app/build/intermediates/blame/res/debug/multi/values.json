@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\gitrepos\\NotePad\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "outputFile": "D:\\Android\\Android_lab\\NotePad\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,13 +11,13 @@
                     "endOffset": 95
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 691,
+                        "startOffset": 708,
                         "endColumn": 44,
-                        "endOffset": 731
+                        "endOffset": 748
                     }
                 }
             },
@@ -30,13 +30,13 @@
                     "endOffset": 136
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 33,
+                        "startLine": 34,
                         "startColumn": 4,
-                        "startOffset": 1320,
+                        "startOffset": 1401,
                         "endColumn": 40,
-                        "endOffset": 1356
+                        "endOffset": 1437
                     }
                 }
             },
@@ -49,13 +49,13 @@
                     "endOffset": 197
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 40,
+                        "startLine": 41,
                         "startColumn": 4,
-                        "startOffset": 1559,
+                        "startOffset": 1647,
                         "endColumn": 60,
-                        "endOffset": 1615
+                        "endOffset": 1703
                     }
                 }
             },
@@ -68,13 +68,13 @@
                     "endOffset": 243
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 39,
+                        "startLine": 40,
                         "startColumn": 4,
-                        "startOffset": 1513,
+                        "startOffset": 1600,
                         "endColumn": 45,
-                        "endOffset": 1554
+                        "endOffset": 1641
                     }
                 }
             },
@@ -87,13 +87,13 @@
                     "endOffset": 294
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 736,
+                        "startOffset": 754,
                         "endColumn": 50,
-                        "endOffset": 782
+                        "endOffset": 800
                     }
                 }
             },
@@ -106,13 +106,13 @@
                     "endOffset": 340
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 25,
+                        "startLine": 26,
                         "startColumn": 4,
-                        "startOffset": 997,
+                        "startOffset": 1070,
                         "endColumn": 45,
-                        "endOffset": 1038
+                        "endOffset": 1111
                     }
                 }
             },
@@ -125,13 +125,13 @@
                     "endOffset": 383
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 30,
+                        "startLine": 31,
                         "startColumn": 4,
-                        "startOffset": 1231,
+                        "startOffset": 1309,
                         "endColumn": 42,
-                        "endOffset": 1269
+                        "endOffset": 1347
                     }
                 }
             },
@@ -144,13 +144,13 @@
                     "endOffset": 430
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 27,
+                        "startLine": 28,
                         "startColumn": 4,
-                        "startOffset": 1086,
+                        "startOffset": 1161,
                         "endColumn": 46,
-                        "endOffset": 1128
+                        "endOffset": 1203
                     }
                 }
             },
@@ -163,13 +163,13 @@
                     "endOffset": 473
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 28,
+                        "startLine": 29,
                         "startColumn": 4,
-                        "startOffset": 1133,
+                        "startOffset": 1209,
                         "endColumn": 42,
-                        "endOffset": 1171
+                        "endOffset": 1247
                     }
                 }
             },
@@ -182,13 +182,13 @@
                     "endOffset": 518
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 31,
+                        "startLine": 32,
                         "startColumn": 4,
-                        "startOffset": 1274,
+                        "startOffset": 1353,
                         "endColumn": 44,
-                        "endOffset": 1314
+                        "endOffset": 1393
                     }
                 }
             },
@@ -201,13 +201,13 @@
                     "endOffset": 573
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 29,
+                        "startLine": 30,
                         "startColumn": 4,
-                        "startOffset": 1176,
+                        "startOffset": 1253,
                         "endColumn": 54,
-                        "endOffset": 1226
+                        "endOffset": 1303
                     }
                 }
             },
@@ -220,13 +220,13 @@
                     "endOffset": 616
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 26,
+                        "startLine": 27,
                         "startColumn": 4,
-                        "startOffset": 1043,
+                        "startOffset": 1117,
                         "endColumn": 42,
-                        "endOffset": 1081
+                        "endOffset": 1155
                     }
                 }
             },
@@ -235,17 +235,17 @@
                     "startLine": 14,
                     "startColumn": 4,
                     "startOffset": 621,
-                    "endColumn": 68,
-                    "endOffset": 685
+                    "endColumn": 46,
+                    "endOffset": 663
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 41,
+                        "startLine": 25,
                         "startColumn": 4,
-                        "startOffset": 1620,
-                        "endColumn": 68,
-                        "endOffset": 1684
+                        "startOffset": 1022,
+                        "endColumn": 46,
+                        "endOffset": 1064
                     }
                 }
             },
@@ -253,18 +253,18 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 690,
-                    "endColumn": 50,
-                    "endOffset": 736
+                    "startOffset": 668,
+                    "endColumn": 68,
+                    "endOffset": 732
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 36,
+                        "startLine": 42,
                         "startColumn": 4,
-                        "startOffset": 1408,
-                        "endColumn": 50,
-                        "endOffset": 1454
+                        "startOffset": 1709,
+                        "endColumn": 68,
+                        "endOffset": 1773
                     }
                 }
             },
@@ -272,18 +272,18 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 741,
-                    "endColumn": 52,
-                    "endOffset": 789
+                    "startOffset": 737,
+                    "endColumn": 50,
+                    "endOffset": 783
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 37,
                         "startColumn": 4,
-                        "startOffset": 1459,
-                        "endColumn": 52,
-                        "endOffset": 1507
+                        "startOffset": 1492,
+                        "endColumn": 50,
+                        "endOffset": 1538
                     }
                 }
             },
@@ -291,18 +291,18 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 794,
-                    "endColumn": 45,
-                    "endOffset": 835
+                    "startOffset": 788,
+                    "endColumn": 52,
+                    "endOffset": 836
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 34,
+                        "startLine": 38,
                         "startColumn": 4,
-                        "startOffset": 1361,
-                        "endColumn": 45,
-                        "endOffset": 1402
+                        "startOffset": 1544,
+                        "endColumn": 52,
+                        "endOffset": 1592
                     }
                 }
             },
@@ -310,18 +310,18 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 840,
-                    "endColumn": 49,
-                    "endOffset": 885
+                    "startOffset": 841,
+                    "endColumn": 45,
+                    "endOffset": 882
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 21,
+                        "startLine": 35,
                         "startColumn": 4,
-                        "startOffset": 845,
-                        "endColumn": 49,
-                        "endOffset": 890
+                        "startOffset": 1443,
+                        "endColumn": 45,
+                        "endOffset": 1484
                     }
                 }
             },
@@ -329,18 +329,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 890,
+                    "startOffset": 887,
                     "endColumn": 49,
-                    "endOffset": 935
+                    "endOffset": 932
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 22,
+                        "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 895,
+                        "startOffset": 866,
                         "endColumn": 49,
-                        "endOffset": 940
+                        "endOffset": 911
                     }
                 }
             },
@@ -348,18 +348,18 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 940,
-                    "endColumn": 56,
-                    "endOffset": 992
+                    "startOffset": 937,
+                    "endColumn": 49,
+                    "endOffset": 982
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 20,
+                        "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 788,
-                        "endColumn": 56,
-                        "endOffset": 840
+                        "startOffset": 917,
+                        "endColumn": 49,
+                        "endOffset": 962
                     }
                 }
             },
@@ -367,18 +367,37 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 997,
-                    "endColumn": 50,
-                    "endOffset": 1043
+                    "startOffset": 987,
+                    "endColumn": 56,
+                    "endOffset": 1039
                 },
                 "from": {
-                    "file": "E:\\gitrepos\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 808,
+                        "endColumn": 56,
+                        "endOffset": 860
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1044,
+                    "endColumn": 50,
+                    "endOffset": 1090
+                },
+                "from": {
+                    "file": "D:\\Android\\Android_lab\\NotePad\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
-                        "startOffset": 945,
+                        "startOffset": 968,
                         "endColumn": 50,
-                        "endOffset": 991
+                        "endOffset": 1014
                     }
                 }
             }
